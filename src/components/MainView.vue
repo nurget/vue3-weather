@@ -21,9 +21,9 @@
                   <img src="@/assets/images/01d.png" alt="MainLogo" />
               </div>
               <div class="weatherData">
-                  <div>
-                      <p></p>
-                      <p></p>
+                  <div v-for="Temporary in TemporaryData" :key="Temporary.title" class="detailData">
+                      <p>{{ Temporary.title }}</p>
+                      <p>{{ Temporary.value }}</p>
                   </div>
               </div>
           </div>
@@ -59,7 +59,27 @@
 </template>
 
 <script>
-export default {};
+export default {
+    data() {
+        return {
+            // 임시 데이터
+            TemporaryData: [
+                {
+                    title: '습도',
+                    value: '88%'
+                },
+                {
+                    title: '풍속',
+                    value: '10m/s'
+                },
+                {
+                    title: '풍향',
+                    value: 'WS'
+                },
+            ]
+        }
+    }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -133,6 +153,75 @@ export default {};
                     &.airquality {
                         background-color: transparent;
                         color: #467599;
+                    }
+                }
+            }
+        }
+
+        .weatherBox {
+            width: 100%;
+            height: 80%;
+
+            .weatherDegree {
+                @include center;
+                width: 100%;
+                height: 15%;
+
+                p {
+                    font-size: 3.5rem;
+                    font-weight: 500;
+                    font-family: "Be Vietnam Pro", sans-serif;
+                    color: white;
+                }
+            }
+
+            .weatherIcon {
+                @include center;
+                width: 100%;
+                height: 60%;
+
+                img {
+                    width: 168px;
+                    height: 160px;
+                }
+            }
+
+            .weatherData {
+                display: flex;
+                width: 100%;
+                height: 25%;
+
+                .detailData {
+                    @include c-center;
+                    width: 33.33%;
+                    height: 100%;
+
+                    // 레이아웃이 3개이기 때문에 동일한 레이아웃을 반복시킴을 알 수 있다.
+                    &:nth-child(1) {
+                        margin-left: 10px;
+                    }
+                    &:nth-child(2) {
+                        margin-left: 0 -10px;
+                    }
+                    &:nth-child(3) {
+                        margin-left: 10px;
+                    }
+
+                    p {
+                        line-height: 1.5;
+                        color: white;
+
+                        &:first-child {
+                            font-size: 1rem;
+                            font-weight: 300;
+                            font-family: 'Noto Sans KR', sans-serif;
+                            color: #799ed0;
+                        }
+                        &:last-child {
+                            font-size: 1rem;
+                            font-weight: 200;
+                            font-family: 'Poppins', sans-serif;
+                        }
                     }
                 }
             }
