@@ -1,61 +1,61 @@
 <template>
-  <div class="leftContainer">
-      <div id="cityNameBox">
-          <div class="cityName">
-              <p>San Fransisco</p>
-              <p>May 28, 2024</p>
-          </div>
-      </div>
-      <div id="contentBox">
-          <div class="buttonBox">
-              <div class="buttonBackground">
-                  <button class="forecast">Forecast</button>
-                  <button class="airquality">Air Quality</button>
-              </div>
-          </div>
-          <div class="weatherBox">
-              <div class="weatherDegree">
-                  <p>10&deg;</p>
-              </div>
-              <div class="weatherIcon">
-                  <img src="@/assets/images/01d.png" alt="MainLogo" />
-              </div>
-              <div class="weatherData">
-                  <div v-for="Temporary in TemporaryData" :key="Temporary.title" class="detailData">
-                      <p>{{ Temporary.title }}</p>
-                      <p>{{ Temporary.value }}</p>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div id="todayWeather">
-          <div class="textBox">
-              <p>시간대별 날씨 정보</p>
-              <p>이번주 날씨 보기</p>
-          </div>
-          <div class="timelyWeatherBox">
-              <div class="timelyWeather">
-                  <div class="icon">
-                      <img src="@/assets/images/02d.png" alt="" />
-                  </div>
-                  <div class="data">
-                      <p class="time">2pm</p>
-                      <p class="currentDegree">32&deg;</p>
-                      <div>
-                          <img src="@/assets/images/drop.png" alt="" />
-                          <p class="fall">15%</p>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <nav>
-          <i class=""></i>
-          <i class=""></i>
-          <i class=""></i>
-          <i class=""></i>
-      </nav>
-  </div>
+    <div class="leftContainer">
+        <div id="cityNameBox">
+            <div class="cityName">
+                <p>Seoul</p>
+                <p>March 28, 2024</p>
+            </div>
+        </div>
+        <div id="contentsBox">
+            <div class="buttonBox">
+                <div class="buttonBackground">
+                    <button class="forecast">Forecast</button>
+                    <button class="airquality">Air Quality</button>
+                </div>
+            </div>
+            <div class="weatherBox">
+                <div class="weatherDegree">
+                    <p>25&deg;</p>
+                </div>
+                <div class="weatherIcon">
+                    <img src="@/assets/images/01d.png" alt="MainLogo" />
+                </div>
+                <div class="weatherData">
+                    <div v-for="temporary in temporaryData" :key="temporary.title" class="detailData">
+                        <p>{{ temporary.title }}</p>
+                        <p>{{ temporary.value }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="todayWeather">
+            <div class="textBox">
+                <p>시간대별 날씨 정보</p>
+                <p>이번주 날씨 보기</p>
+            </div>
+            <div class="timelyWeatherBox">
+                <div class="timelyWeather">
+                    <div class="icon">
+                        <img src="@/assets/images/02d.png" alt="" />
+                    </div>
+                    <div class="data">
+                        <p class="time">2pm</p>
+                        <p class="currentDegree">32&deg;</p>
+                        <div>
+                            <img src="@/assets/images/drop.png" alt="" />
+                            <p class="fall">15%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav>
+            <i class="material-symbols-outlined">home</i>
+            <i class="material-symbols-outlined">location_on</i>
+            <i class="material-symbols-outlined">chart_data</i>
+            <i class="material-symbols-outlined">settings</i>
+        </nav>
+    </div>
 </template>
 
 <script>
@@ -63,7 +63,7 @@ export default {
     data() {
         return {
             // 임시 데이터
-            TemporaryData: [
+            temporaryData: [
                 {
                     title: '습도',
                     value: '88%'
@@ -87,6 +87,7 @@ export default {
 
 .leftContainer {
     width: 324px;
+    min-width: 324px;
     height: 700px;
     border-radius: 50px;
     background: linear-gradient(#16455f, #0e1239);
@@ -103,7 +104,7 @@ export default {
 
             p {
                 color: white;
-                font-family: "Poppins", sans-serif;
+                font-family: 'Poppins', sans-serif;
                 line-height: 2.5;
                 text-align: center;
 
@@ -122,7 +123,7 @@ export default {
         }
     }
 
-    #contentBox {
+    #contentsBox {
         width: 100%;
         height: 62.5%;
 
@@ -151,7 +152,7 @@ export default {
                         color: white;
                     }
                     &.airquality {
-                        background-color: transparent;
+                        background: transparent;
                         color: #467599;
                     }
                 }
@@ -170,22 +171,19 @@ export default {
                 p {
                     font-size: 3.5rem;
                     font-weight: 500;
-                    font-family: "Be Vietnam Pro", sans-serif;
+                    font-family: 'Be Vietnam Pro', sans-serif;
                     color: white;
                 }
             }
-
             .weatherIcon {
                 @include center;
                 width: 100%;
                 height: 60%;
 
                 img {
-                    width: 168px;
                     height: 160px;
                 }
             }
-
             .weatherData {
                 display: flex;
                 width: 100%;
@@ -195,7 +193,6 @@ export default {
                     @include c-center;
                     width: 33.33%;
                     height: 100%;
-
                     // 레이아웃이 3개이기 때문에 동일한 레이아웃을 반복시킴을 알 수 있다.
                     &:nth-child(1) {
                         margin-left: 10px;
@@ -204,7 +201,7 @@ export default {
                         margin-left: 0 -10px;
                     }
                     &:nth-child(3) {
-                        margin-left: 10px;
+                        margin-right: 10px;
                     }
 
                     p {
@@ -224,6 +221,124 @@ export default {
                         }
                     }
                 }
+            }
+        }
+    }
+
+    #todayWeather {
+        width: 100%;
+        height: 17.5%;
+
+        .textBox {
+            @include center-sb;
+            width: 100%;
+            height: 35%;
+            padding: 0 35px;
+            font-family: 'Noto Sans KR', sans-serif;
+
+            p {
+                font-weight: 400;
+                font-size: 0.8rem;
+                color: white;
+                text-align: center;
+
+                &:last-child {
+                    font-weight: 400;
+                    font-size: 0.8rem;
+                    color: #0085ff;
+                    cursor: pointer;
+                    margin-bottom: 2px;
+                }
+            }
+        }
+        .timelyWeatherBox {
+            display: flex;
+            align-items: center;
+            width: calc(100% - 70px);
+            height: 65%;
+            padding: 0 30px;
+            overflow: scroll;
+
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            &::-webkit-scrollbar {
+                display: none;
+            }
+
+            .timelyWeather {
+                display: flex;
+                width: 126px;
+                min-width: 126px;
+                height: 70px;
+                background-color: #0989ff;
+                border-radius: 20px;
+                margin-left: 15px;
+
+                &:first-child {
+                    margin-left: 0;
+                }
+
+                .icon {
+                    @include center;
+                    width: 45%;
+                    height: 100%;
+
+                    img {
+                        width: 100%;
+                    }
+                }
+                .data {
+                    @include c-center-se;
+                    width: 55%;
+                    height: 100%;
+
+                    p {
+                        color: whitesmoke;
+                        font-family: 'Poppins', sans-serif;
+                        text-align: center;
+
+                        &.time {
+                            font-size: 0.8rem;
+                            font-weight: 200;
+                        }
+
+                        &.currentDegree {
+                            font-size: 1.2rem;
+                        }
+                    }
+
+                    div {
+                        @include center;
+                        width: 100%;
+                        height: 33.33%;
+
+                        img {
+                            height: 55%;
+                        }
+                        .fall {
+                            font-size: 0.9rem;
+                            margin-top: 1.5px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    nav {
+        @include center-sb;
+        width: 100%;
+        height: 10%;
+        padding: 0 50px;
+
+        i {
+            color: rgb(255, 255, 255);
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+
+            &:hover {
+                color: #799ed0;
             }
         }
     }
